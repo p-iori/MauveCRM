@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<title>{% block title %} {% endblock %}</title>
+</head>
+
+<body>
+    <nav class="py-4 px-6 flex justify-between">
+        <a href="/" class="">CRM Mauve</a>
+        
+
+        <div class="text-white space-4 space-x-3">
+            <a href="{% url 'about' %}" class="text-black">Sobre</a>                   
+            <a class="py-3 px-6 bg-violet-900 rounded-xl hover:bg-violet-600" href="/">Entrar</a>
+            <a href="{% url 'signup' %}" class="py-3 px-6 bg-violet-700 rounded-xl hover:bg-violet-950" href="/">Cadastro</a>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer class="py-8 text-center bg-gray-300">
+            <p class="text-xs text-gray-700">Copyright (c) 2025 - Mauve</p>
+    </footer>
+</body>
+
+</html>
