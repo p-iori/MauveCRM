@@ -2,26 +2,26 @@ from django.contrib.auth.models import User
 from django.db import models
 
 class Lead(models.Model):
-    LOW = 'low'
-    MEDIUM = 'medium'
-    HIGH = 'high'
+    LOW = 'baixa'
+    MEDIUM = 'media'
+    HIGH = 'alta'
 
     CHOICES_PRIORITY = {
-        (LOW, 'Low'),
-        (MEDIUM, 'Medium'),
-        (HIGH, 'High')
+        (LOW, 'Baixa'),
+        (MEDIUM, 'Média'),
+        (HIGH, 'Alta')
     }
 
-    NEW = 'new'
-    CONTACTED = 'contacted'
-    WON = 'won'
-    LOST = 'lost'
+    NEW = 'novo'
+    CONTACTED = 'contactado'
+    WON = 'convertida'
+    LOST = 'perdida'
 
     CHOICES_STATUS = {
-        (NEW, 'New'),
-        (CONTACTED, 'Contacted'),
-        (WON, 'Won'),
-        (LOST, 'Lost'),
+        (NEW, 'Novo'),
+        (CONTACTED, 'Contactado'),
+        (WON, 'Convertida'),
+        (LOST, 'Perdida'),
     }
 
     name = models.CharField(max_length=255)
