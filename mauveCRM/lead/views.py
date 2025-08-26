@@ -13,6 +13,14 @@ def leads_lista(request):
     })
 
 @login_required
+def sobre_lead(request, pk): 
+    lead = Lead.objects.filter(criada_por=request.user).get(pk=pk)
+
+    return render(request, 'lead/sobre_lead.html', {
+        'lead': lead
+    })
+
+@login_required
 def criar_lead(request):
     if request.method == 'POST':
         form = NovaLeadForm(request.POST)
