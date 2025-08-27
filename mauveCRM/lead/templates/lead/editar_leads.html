@@ -1,16 +1,16 @@
 {% extends 'core/base.html' %}
-{% block title %} Nova Lead {% endblock %}
+{% block title %} Editar Lead {% endblock %}
 
 {% block content %}
     <div class="py-6 px-6">
-        <h1 class="text-xl">Adicionar Lead</h1>
+        <h1 class="text-xl">Editar Lead</h1>
 
         <form method="post" action=".">
             {% csrf_token %}
 
             {{ form.as_p }}
                    
-            <button class="py-4 px-4 bg-slate-600 text-white rounded-xl hover:bg-slate-500 hover:cursor-pointer">Criar Lead</button>
+            <button class="py-4 px-4 bg-slate-600 text-white rounded-xl hover:bg-slate-500 hover:cursor-pointer">Confirmar</button>
 
         </form>
     </div>

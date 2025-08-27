@@ -22,6 +22,27 @@ def sobre_lead(request, pk):
     })
 
 @login_required
+def editar_lead(request, pk): 
+    lead = Lead.objects.filter(criada_por=request.user).get(pk=pk)
+
+    if request.method == 'POST':
+        form = NovaLeadForm(request.POST, instance=lead)
+
+        if form.is_valid():
+            lead = form.save(commit=False)
+            lead.save()
+
+            messages.success(request, "Mudanças aplicadas com sucesso.")
+
+            return redirect('leads_lista')
+    else:
+        form = NovaLeadForm(instance=lead)
+
+    return render(request, 'lead/editar_leads.html', {
+        'form': form
+    })
+
+@login_required
 def criar_lead(request):
     if request.method == 'POST':
         form = NovaLeadForm(request.POST)

@@ -24,6 +24,8 @@
                     {{ lead.get_status_display }}
                 </p>
             </div>
-        {% endfor %}
+        {% empty %}
+            <p class="py-2 px-2 text-gray-900">Você ainda não cadastrou nenhuma lead</p>
+        {% endfor %}            
     </div>
 {% endblock %}
