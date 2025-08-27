@@ -5,5 +5,31 @@
 
     <div class="py-6 px-6">
         <h1 class="mb-4 text-xl">{{ lead.nome }}</h1>
+    
+        {% if lead.sobre %}
+            <p class="font-semibold">Descrição:</p>
+            <p class="mb-2">{{ lead.sobre }}</p>
+        {% endif %}    
+
+        <p class="font-semibold">Prioridade:</p>
+        <p class="mb-2">{{ lead.get_prioridade_display }}</p>
+
+        <p class="font-semibold">Status:</p>
+        <p class="mb-2">{{ lead.get_status_display }}</p>
+
+        <p class="font-semibold">Cadastrada por:</p>
+        <p class="mb-2">{{ lead.criada_por }}</p>
+
+        <p class="font-semibold">Data do cadastro:</p>
+        <p class="mb-2">{{ lead.criada_em|date:"d/M/Y - H:i" }}</p>
+
+        <p class="font-semibold">Data da última modificação:</p>
+        <p class="mb-6">{{ lead.modificada_em|date:"d/M/Y - H:i" }}</p>
+
+        <hr class="my-4 text-gray-300">
+            <a href="{% url 'deletar_lead' lead.id %}" class="py-2 px-6 bg-gray-200 rounded-xl hover:bg-gray-300">Deletar lead</a>
+        <hr class="my-4 text-gray-300">
+
+        <a href="{% url 'leads_lista' %}" class="py-2 px-6 bg-gray-200 rounded-xl hover:bg-gray-300">Voltar para minhas leads</a>        
     </div>
 {% endblock %}

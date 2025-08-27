@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .models import Lead
@@ -30,10 +31,22 @@ def criar_lead(request):
             lead.criada_por = request.user
             lead.save()
 
-            return redirect('dashboard')
+            messages.success(request, "Lead criada.")
+
+
+            return redirect('leads_lista')
     else:
         form = NovaLeadForm()
 
     return render(request, 'lead/add_lead.html', {
         'form': form
     })
+
+@login_required
+def deletar_lead(request, pk):
+    lead = Lead.objects.filter(criada_por=request.user).get(pk=pk)
+    lead.delete()
+
+    messages.success(request, "Lead deletada.")
+
+    return redirect('leads_lista')
