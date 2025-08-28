@@ -27,8 +27,9 @@
         <p class="mb-6">{{ lead.modificada_em|date:"d/M/Y - H:i" }}</p>
 
         <hr class="my-4 text-gray-300">
-            <a href="{% url 'deletar_lead' lead.id %}" class="py-2 px-6 bg-red-400 rounded-xl hover:bg-red-500">Deletar lead</a>
-            <a href="{% url 'editar_lead' lead.id %}" class="py-2 px-6 bg-green-400 rounded-xl hover:bg-green-500">Editar lead</a>
+            <a href="{% url 'deletar_lead' lead.id %}" class="py-2 px-6 bg-red-600 text-white rounded-xl hover:bg-red-700">Deletar lead</a>
+            <a href="{% url 'editar_lead' lead.id %}" class="py-2 px-6 bg-violet-900 text-white rounded-xl hover:bg-violet-600">Editar lead</a>
+            <a href="{% url 'converter_lead' lead.id %}" class="py-2 px-6 bg-sky-800 text-white rounded-xl hover:bg-sky-700">Converter para cliente</a>
         <hr class="my-4 text-gray-300">
 
         <a href="{% url 'leads_lista' %}" class="py-2 px-6 bg-gray-200 rounded-xl hover:bg-gray-300">Voltar para minhas leads</a>        

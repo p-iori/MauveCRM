@@ -29,6 +29,7 @@ class Lead(models.Model):
     sobre = models.CharField(blank=True, null=True) 
     prioridade = models.CharField(max_length=10, choices=CHOICES_PRIORITY, default=MEDIUM)
     status = models.CharField(max_length=10, choices=CHOICES_STATUS, default=NOVO)
+    convertida_para_client = models.BooleanField(default=False)
     criada_por = models.ForeignKey(User, related_name='leads', on_delete=models.CASCADE)
     criada_em = models.DateTimeField(auto_now_add=True)
     modificada_em = models.DateTimeField(auto_now=True)
