@@ -82,7 +82,7 @@ def converter_para_client(request, pk):
         nome=lead.nome,
         email=lead.email,
         sobre=lead.sobre,
-        criada_por=request.user,
+        criado_por=request.user,
     )
 
     lead.convertida_para_client = True
