@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from .models import Lead
 
 from client.models import Client
+from team.models import Team
 
 from .forms import NovaLeadForm
 
@@ -50,8 +51,11 @@ def criar_lead(request):
         form = NovaLeadForm(request.POST)
 
         if form.is_valid():
+            team = Team.objects.filter(criado_por=request.user)[0]
+
             lead = form.save(commit=False)
             lead.criada_por = request.user
+            lead.team = team
             lead.save()
 
             messages.success(request, "Lead criada.")
@@ -77,12 +81,15 @@ def deletar_lead(request, pk):
 @login_required
 def converter_para_client(request, pk):
     lead = Lead.objects.filter(criada_por=request.user).get(pk=pk)
+    team = Team.objects.filter(criado_por=request.user)[0]
+
 
     client = Client.objects.create(
         nome=lead.nome,
-        email=lead.email,
+        email=lead.email, 
         sobre=lead.sobre,
         criado_por=request.user,
+        team=team,
     )
 
     lead.convertida_para_client = True

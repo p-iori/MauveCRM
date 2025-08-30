@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from team.models import Team
 
 class Lead(models.Model):
     LOW = 'baixa'
@@ -24,6 +25,7 @@ class Lead(models.Model):
         (PERD, 'Perdida'),
     ]
 
+    team = models.ForeignKey(Team, related_name='leads', on_delete=models.CASCADE)
     nome = models.CharField(max_length=255)
     email = models.EmailField()
     sobre = models.CharField(blank=True, null=True) 
@@ -33,6 +35,9 @@ class Lead(models.Model):
     criada_por = models.ForeignKey(User, related_name='leads', on_delete=models.CASCADE)
     criada_em = models.DateTimeField(auto_now_add=True)
     modificada_em = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        ordering = ('nome',)
 
     def __str__(self):
         return self.nome

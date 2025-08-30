@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from .forms import NovoClientForm
 
 from .models import Client
+from team.models import Team
 
 @login_required
 def clients_lista(request):
@@ -29,8 +30,10 @@ def criar_client(request):
         form = NovoClientForm(request.POST)
 
         if form.is_valid():
+            team = Team.objects.filter(criado_por=request.user)[0]
             client = form.save(commit=False)
             client.criado_por = request.user
+            client.team = team
             client.save()
 
             messages.success(request, "Client criado.")
