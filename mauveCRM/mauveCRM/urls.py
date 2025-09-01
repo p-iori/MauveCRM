@@ -3,13 +3,14 @@ from django.contrib.auth import views
 from django.urls import path, include
 
 from core.views import index, about
-from userprofile.views import signup
+from userprofile.views import signup, perfil
 
 urlpatterns = [
     path('', index, name='index'),
     path('dashboard/leads/', include('lead.urls')),
     path('dashboard/clientes/', include('client.urls')),
-    path('dashboard/', include('dashboard.urls')),
+    path('dashboard/', include('dashboard.urls')),  
+    path('dashboard/meu-perfil/', perfil, name='perfil'),
     path('about/', about, name='about'),
     path('cadastrar/', signup, name='signup'),
     path('entrar/', views.LoginView.as_view(template_name='userprofile/login.html'), name='login'),

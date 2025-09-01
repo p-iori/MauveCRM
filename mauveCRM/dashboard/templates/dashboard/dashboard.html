@@ -2,7 +2,40 @@
 {% block title %} Dashboard {% endblock %}
 
 {% block content %}
+    <div class="py-6 px-6">
+        <h1 class="mb-4 text-xl">Dashboard</h1>
+        <div class="flex space-x-4">
 
-    <h1 class="text-xl">Dashboard</h1>
+            <div class="w-1/2 px-4 py-6 bg-gray-100 rounded-xl leads">
+                <h2 class="text-lg mb-2">Últimas leads</h2>
 
+                {% for lead in leads %}
+                    <div class="lead mb-2">
+                        <div class="space-y-2">
+                            <h3 class="font-semibold">{{ lead.nome }}</h3>
+                            <p class="text-xs">Status: {{ lead.get_status_display }}</p>
+                            <p class="text-xs">Prioridade: {{ lead.get_prioridade_display }}</p>
+                            <a href="{% url 'sobre_lead' lead.pk %}" class="py-1 px-1 text-sm bg-slate-200 rounded-md hover:bg-slate-100">Detalhes</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="w-1/2 px-4 py-6 bg-gray-100 rounded-xl clients">
+                <h2 class="text-lg mb-2">Últimos clientes</h2>
+
+                {% for client in clients %}
+                    <div class="client mb-2">
+                        <div class="space-y-2">
+                            <h3 class="font-semibold">{{ client.nome }}</h3>
+                            <p class="text-xs">Status: {{ client.get_status_display }}</p>
+                            <p class="text-xs">Prioridade: {{ client.get_prioridade_display }}</p>
+                            <a href="{% url 'sobre_client' client.pk %}" class="py-1 px-1 text-sm bg-slate-200 rounded-md hover:bg-slate-100">Detalhes</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
 {% endblock %}
