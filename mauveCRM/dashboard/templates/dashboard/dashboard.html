@@ -12,7 +12,7 @@
                 {% for lead in leads %}
                     <div class="lead mb-2">
                         <div class="space-y-2">
-                            <h3 class="font-semibold">{{ lead.nome }}</h3>
+                            <h3 class="font-semibold" >{{ lead.nome }}</h3>
                             <p class="text-xs">Status: {{ lead.get_status_display }}</p>
                             <p class="text-xs">Prioridade: {{ lead.get_prioridade_display }}</p>
                             <a href="{% url 'sobre_lead' lead.pk %}" class="py-1 px-1 text-sm bg-slate-200 rounded-md hover:bg-slate-100">Detalhes</a>
