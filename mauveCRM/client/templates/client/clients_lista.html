@@ -4,7 +4,7 @@
 {% block content %}
     <div class="py-6 px-6">
         <h1 class="mb-4 text-xl">Clientes</h1>
-        <a href="#" class="py-3 px-6 inline-block text-white bg-violet-900 rounded-xl hover:bg-violet-600">Novo cliente</a>
+        <a href="{% url 'add_client' %}" class="py-3 px-6 inline-block text-white bg-violet-900 rounded-xl hover:bg-violet-600">Novo cliente</a>
 
         <div class="flex justify-between mt-4">
             <p class="py-4 px-2 bg-gray-200 w-full font-semibold">Nome</p>

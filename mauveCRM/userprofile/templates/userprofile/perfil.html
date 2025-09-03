@@ -12,6 +12,9 @@
 
         <p class="mb-2">
             <strong>Time: </strong>{{team.nome}}
+            {% if team.criado_por == request.user %}
+                <a href="{% url 'editar_team' team.id %}" class="text-gray-500">(Editar)</a>
+            {% endif %}
         </p>
 
         <hr class="my-4">

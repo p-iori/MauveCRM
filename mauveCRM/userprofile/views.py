@@ -11,8 +11,12 @@ def signup(request):
         form = UserCreationForm(request.POST)
 
         if form.is_valid: 
-            user = form.save()
-            Userprofile.objects.create(user=user)
+            User = form.save()
+            Userprofile.objects.create(user=user)   
+
+            team = Team.objects.create(nome='Nome do time', criado_por=request.user)    
+            team.membros.add(request.user)
+            team.save()            
 
             return redirect('/entrar/')
     else:
