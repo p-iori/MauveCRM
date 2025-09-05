@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.13",
+    "tailwindcss": "^4.1.13"
+  },
+
+  "scripts": {
+    "watch:css": "npx @tailwindcss/cli -i ./static/main.css -o ./static/main.min.css --watch"
+  }
+
+}
