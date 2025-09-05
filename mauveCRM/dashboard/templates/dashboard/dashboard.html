@@ -15,7 +15,7 @@
                             <h3 class="font-semibold" >{{ lead.nome }}</h3>
                             <p class="text-xs">Status: {{ lead.get_status_display }}</p>
                             <p class="text-xs">Prioridade: {{ lead.get_prioridade_display }}</p>
-                            <a href="{% url 'sobre_lead' lead.pk %}" class="py-1 px-1 text-sm bg-slate-300 rounded-md hover:bg-slate-100">Detalhes</a>
+                            <a href="{% url 'leads:sobre' lead.pk %}" class="py-1 px-1 text-sm bg-slate-300 rounded-md hover:bg-slate-100">Detalhes</a>
                         </div>
                     </div>
                 {% endfor %}
@@ -28,7 +28,7 @@
                     <div class="client mb-2">
                         <div class="space-y-2">
                             <h3 class="font-semibold">{{ client.nome }}</h3>
-                            <a href="{% url 'sobre_client' client.pk %}" class="py-1 px-1 text-sm bg-slate-200 rounded-md hover:bg-slate-100">Detalhes</a>
+                            <a href="{% url 'clients:sobre' client.pk %}" class="py-1 px-1 text-sm bg-slate-200 rounded-md hover:bg-slate-100">Detalhes</a>
                         </div>
                     </div>
                 {% endfor %}

@@ -21,10 +21,10 @@
         <p class="mb-6">{{ client.modificado_em|date:"d/M/Y - H:i" }}</p>
 
         <hr class="my-4 text-gray-300">
-            <a href="{% url 'deletar_client' client.id %}" class="py-2 px-6 bg-red-600 text-white rounded-xl hover:bg-red-700">Deletar cliente</a>
-            <a href="{% url 'editar_client' client.id %}" class="py-2 px-6 bg-violet-900 text-white rounded-xl hover:bg-violet-600">Editar informações</a>
+            <a href="{% url 'clients:deletar' client.id %}" class="py-2 px-6 bg-red-600 text-white rounded-xl hover:bg-red-700">Deletar cliente</a>
+            <a href="{% url 'clients:editar' client.id %}" class="py-2 px-6 bg-violet-900 text-white rounded-xl hover:bg-violet-600">Editar informações</a>
         <hr class="my-4 text-gray-300">
 
-        <a href="{% url 'clients_lista' %}" class="py-2 px-6 bg-gray-200 rounded-xl hover:bg-gray-300">Voltar para meus clientes</a>        
+        <a href="{% url 'clients:lista' %}" class="py-2 px-6 bg-gray-200 rounded-xl hover:bg-gray-300">Voltar para meus clientes</a>        
     </div>
 {% endblock %}

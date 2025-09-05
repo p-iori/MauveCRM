@@ -36,10 +36,10 @@ def criar_client(request):
             client.team = team
             client.save()
 
-            messages.success(request, "Client criado.")
+            messages.success(request, "Cliente criado.")
 
 
-            return redirect('clients_lista')
+            return redirect('clients:lista')
     else:
         form = NovoClientForm()
 
@@ -54,7 +54,7 @@ def deletar_client(request, pk):
 
     messages.success(request, "Cliente deletado.")
 
-    return redirect('clients_lista')
+    return redirect('clients:lista')
 
 @login_required
 def editar_client(request, pk): 
@@ -69,7 +69,7 @@ def editar_client(request, pk):
 
             messages.success(request, "Mudanças aplicadas com sucesso.")
 
-            return redirect('clients_lista')
+            return redirect('clients:lista')
     else:
         form = NovoClientForm(instance=client)
 

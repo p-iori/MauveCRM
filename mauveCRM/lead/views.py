@@ -37,7 +37,7 @@ def editar_lead(request, pk):
 
             messages.success(request, "Mudanças aplicadas com sucesso.")
 
-            return redirect('leads_lista')
+            return redirect('leads:lista')
     else:
         form = NovaLeadForm(instance=lead)
 
@@ -61,7 +61,7 @@ def criar_lead(request):
             messages.success(request, "Lead criada.")
 
 
-            return redirect('leads_lista')
+            return redirect('leads:lista')
     else:
         form = NovaLeadForm()
 
@@ -76,7 +76,7 @@ def deletar_lead(request, pk):
 
     messages.success(request, "Lead deletada.")
 
-    return redirect('leads_lista')
+    return redirect('leads:lista')
 
 @login_required
 def converter_para_client(request, pk):
@@ -97,4 +97,4 @@ def converter_para_client(request, pk):
 
     messages.success(request, "Lead convertida para cliente.")
 
-    return redirect('leads_lista')
+    return redirect('leads:lista')
