@@ -2,7 +2,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, DeleteView, UpdateView
+from django.urls import reverse_lazy
 
 from .models import Lead
 
@@ -38,6 +39,23 @@ class LeadDetailView(DetailView):
         @method_decorator(login_required)
         def dispatch(self, *args, **kwargs):
             return super().dispatch(*args, **kwargs)
+
+
+class LeadDeleteView(DeleteView):
+    model = Lead
+    success_url = reverse_lazy('leads:lista')
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get_queryset(self):
+        queryset = super(LeadDeleteView, self).get_queryset()
+
+        return queryset.filter(criada_por=self.request.user, pk=self.kwargs.get('pk'))
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
 
 
 @login_required
@@ -84,16 +102,6 @@ def criar_lead(request):
     return render(request, 'lead/add_lead.html', {
         'form': form
     })
-
-
-@login_required
-def deletar_lead(request, pk):
-    lead = Lead.objects.filter(criada_por=request.user).get(pk=pk)
-    lead.delete()
-
-    messages.success(request, "Lead deletada.")
-
-    return redirect('leads:lista')
 
 
 @login_required

@@ -2,7 +2,6 @@
 {% block title %} {{ lead.nome }} {% endblock %}
 
 {% block content %} 
-
     <div class="py-6 px-6">
         <h1 class="mb-4 text-xl">{{ lead.nome }}</h1>
     
@@ -27,9 +26,15 @@
         <p class="mb-6">{{ lead.modificada_em|date:"d/M/Y - H:i" }}</p>
 
         <hr class="my-4 text-gray-300">
-            <a href="{% url 'leads:deletar' lead.id %}" class="py-2 px-6 bg-red-600 text-white rounded-xl hover:bg-red-700">Deletar lead</a>
-            <a href="{% url 'leads:editar' lead.id %}" class="py-2 px-6 bg-violet-900 text-white rounded-xl hover:bg-violet-600">Editar lead</a>
-            <a href="{% url 'leads:converter' lead.id %}" class="py-2 px-6 bg-sky-800 text-white rounded-xl hover:bg-sky-700">Converter para cliente</a>
+
+        <form id="lead_delete_form" method="post" action="{% url 'leads:deletar' lead.id %}">
+            {% csrf_token %}
+        </form>
+
+        <a href="#" onclick="document.getElementById('lead_delete_form').submit();" class="py-2 px-6 bg-red-600 text-white rounded-xl hover:bg-red-700">Deletar lead</a>
+        <a href="{% url 'leads:editar' lead.id %}" class="py-2 px-6 bg-violet-900 text-white rounded-xl hover:bg-violet-600">Editar lead</a>
+        <a href="{% url 'leads:converter' lead.id %}" class="py-2 px-6 bg-sky-800 text-white rounded-xl hover:bg-sky-700">Converter para cliente</a>
+
         <hr class="my-4 text-gray-300">
 
         <a href="{% url 'leads:lista' %}" class="py-2 px-6 bg-gray-200 rounded-xl hover:bg-gray-300">Voltar para minhas leads</a>        
