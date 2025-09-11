@@ -8,7 +8,8 @@ urlpatterns = [
     path('', views.LeadListView.as_view(), name='lista'),
     path('<int:pk>/', views.LeadDetailView.as_view(), name='sobre'),
     path('<int:pk>/deletar/', views.LeadDeleteView.as_view(), name='deletar'),
-    path('<int:pk>/editar/', views.editar_lead, name='editar'),
-    path('<int:pk>/converter/', views.converter_para_client, name='converter'),
-    path('nova-lead/', views.criar_lead, name='add'),
+    path('<int:pk>/editar/', views.LeadUpdateView.as_view(), name='editar'),
+    path('<int:pk>/converter/', views.CovertToClientView.as_view(), name='converter'),
+    path('<int:pk>/novo-comentario/', views.AddCommentView.as_view(), name='add_comment'),
+    path('nova-lead/', views.LeadCreateView.as_view(), name='add'),
 ]
