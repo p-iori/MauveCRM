@@ -48,5 +48,8 @@ class Comment(models.Model):
     content = models.TextField(blank=True, null=True)
     criado_por = models.ForeignKey(User, related_name='lead_comments', on_delete=models.CASCADE)
     criado_em = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.criado_por.username
     
 

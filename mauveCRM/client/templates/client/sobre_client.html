@@ -25,6 +25,34 @@
             <a href="{% url 'clients:editar' client.id %}" class="py-2 px-6 bg-violet-900 text-white rounded-xl hover:bg-violet-600">Editar informações</a>
         <hr class="my-4 text-gray-300">
 
+        <hr class="my-4 text-gray-300">
+
+        <h2 class="text-xl">Comentários</h2>
+
+        <div class="space-y-4">
+            {% for comment in client.comments.all %}
+                <div class="p-6 m-4 bg-gray-100 rounded-xl">
+                    <div class="flex space-x-2 items-center">
+                        <p class="font-semibold">{{ comment.criado_por }}</p>
+                        <p class="text-xs text-gray-800"> {{ comment.criado_em|date:"d/M/Y - H:i"}} </p>
+                    </div>
+                    <p>{{ comment.content }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <form method="post" action="{% url 'clients:add_comment' client.id %}">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button class="py-2 px-6 bg-gray-200 text-black rounded-xl hover:bg-gray-300 hover:cursor-pointer">Enviar</button>
+
+        </form>
+
+        <hr class="my-4 text-gray-300">
+
+
         <a href="{% url 'clients:lista' %}" class="py-2 px-6 bg-gray-200 rounded-xl hover:bg-gray-300">Voltar para meus clientes</a>        
     </div>
 {% endblock %}

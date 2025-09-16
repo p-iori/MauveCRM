@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect 
 
-from .forms import NovoClientForm
+from .forms import NovoClientForm, AddCommentForm
 
 from .models import Client
 from team.models import Team
@@ -19,9 +19,27 @@ def clients_lista(request):
 @login_required
 def sobre_client(request, pk):
     client = get_object_or_404(Client, criado_por=request.user, pk=pk)
+    team = Team.objects.filter(criado_por=request.user)[0]
+
+
+    if request.method == 'POST':
+        form = AddCommentForm(request.POST)
+
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.team = team
+            comment.criado_por = request.user
+            comment.client = client
+            comment.save()
+
+            return redirect('clients:sobre', pk=pk)
+        
+    else:
+        form = AddCommentForm()
 
     return render(request, 'client/sobre_client.html', {
-        'client': client
+        'client': client,
+        'form': form
 })
 
 @login_required

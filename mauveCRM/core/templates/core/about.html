@@ -3,5 +3,15 @@
 {% block title %}Sobre{% endblock %}
 
 {% block content %}
-pagina com informações
+    <div class="p-6 items-center justify-center text-center">
+            <div class="">
+
+                <h1 class="text-4xl w-1/2 place-self-center">Ops! Esta página ainda está em desenvolvimento...</h1>
+
+                {% load static %}
+                <img src="{% static 'images/desenvolvimento_desktop.svg' %}" alt="Em desenvolvimento" draggable="false" class="w-1/4 place-self-center">
+
+                <p class="text-xs text-gray-700">Volte daqui um tempo!</p>
+            </div> 
+    </div>
 {% endblock %}
