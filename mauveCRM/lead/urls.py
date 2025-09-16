@@ -11,5 +11,6 @@ urlpatterns = [
     path('<int:pk>/editar/', views.LeadUpdateView.as_view(), name='editar'),
     path('<int:pk>/converter/', views.CovertToClientView.as_view(), name='converter'),
     path('<int:pk>/novo-comentario/', views.AddCommentView.as_view(), name='add_comment'),
+    path('<int:pk>/novo-arquivo/', views.AddFileView.as_view(), name='add_file'),
     path('nova-lead/', views.LeadCreateView.as_view(), name='add'),
 ]
