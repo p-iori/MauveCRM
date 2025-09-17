@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect 
 
-from .forms import NovoClientForm, AddCommentForm
+from .forms import NovoClientForm, AddCommentForm, AddFileForm
 
 from .models import Client
 from team.models import Team
@@ -15,6 +15,26 @@ def clients_lista(request):
     return render(request, 'client/clients_lista.html', {
         'clients': clients
 })
+
+@login_required
+def client_add_file(request, pk):
+    client = get_object_or_404(Client, criado_por=request.user, pk=pk)
+    team = Team.objects.filter(criado_por=request.user)[0]
+
+    if request.method == 'POST':
+        form = AddFileForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            file = form.save(commit=False)
+            file.team = team
+            file.criado_por = request.user
+            file.client_id = pk
+            file.save()
+
+            return redirect('clients:sobre', pk=pk)
+
+    return redirect('clients:sobre', pk=pk)
+
 
 @login_required
 def sobre_client(request, pk):
@@ -39,7 +59,8 @@ def sobre_client(request, pk):
 
     return render(request, 'client/sobre_client.html', {
         'client': client,
-        'form': form
+        'form': form,
+        'fileform': AddFileForm(),
 })
 
 @login_required
